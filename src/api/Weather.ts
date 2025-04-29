@@ -30,7 +30,10 @@ class WeatherAPI{
             lon:lon.toString(),
             units:API_CONFIG.DEFAULT_PARAMS.units,
         });
-        return this.fetchData<WeatherData>(url);
+        console.log(url)
+        return (
+            await this.fetchData<WeatherData>(url)
+        );
     }
 
     async getForecast({lat,lon}:Coordinates):Promise<ForecastData>{
