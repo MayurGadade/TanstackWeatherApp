@@ -1,5 +1,4 @@
 import { WeatherData, GeocodingResponse } from "@/api/Types";
-import React from "react";
 import { Card, CardContent } from "./ui/card";
 import { ArrowDown, ArrowUp, Droplet, Wind } from "lucide-react";
 
@@ -14,7 +13,7 @@ const CurrentWeather = ({ data, location }: CurrentWeatherProps) => {
     weather: [currentWeather],
     wind: { speed },
   } = data;
-  console.log("This is the current weather", currentWeather);
+  // console.log("This is the current weather", currentWeather);
   const formatTemp = (temp: number) => `${Math.round(temp)}°`;
 
   return (
@@ -84,11 +83,12 @@ const CurrentWeather = ({ data, location }: CurrentWeatherProps) => {
               </div>
             </div>
 
-            <div>
+            <div className="flex flex-col items-center justify-center">
               <div className="relative flex aspect-square w-full max-w-[200px] items-center justify-center">
                 <img
                   src={`http://openweathermap.org/img/wn/${currentWeather.icon}@4x.png`}
                   alt="weather icon"
+                  className="w-full h-full object-contain"
                 />
                 <div className="absolute bottom-0 text-center">
                   <p className="text-sm font-medium capitalize">

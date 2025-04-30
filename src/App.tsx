@@ -20,19 +20,19 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <ThemeProvider defaultTheme="dark">
+    <ThemeProvider defaultTheme="dark">
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
           <Layout>
             <Routes>
               <Route path="/" element={<WeatherDashbord />} />
               <Route path="/city/:cityName" element={<CityName />} />
             </Routes>
           </Layout>
-        </ThemeProvider>
-      </BrowserRouter>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+        </BrowserRouter>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
 
