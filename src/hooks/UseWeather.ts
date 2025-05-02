@@ -12,7 +12,9 @@ export const QUERY_KEY = {
 export function useWeatherQuery(coordinates: Coordinates | null) {
   return useQuery({
 
-        queryKey: QUERY_KEY.weather(coordinates ?? { lat: 0, lon: 0 }),
+        queryKey: QUERY_KEY.weather(coordinates ?? { lat: 0, lon: 0 }), // USE TO REFATCHING AND CATCHING DATA
+
+        // queryFn: IN THIS WE PUT OUR API CALL TO FATCH DATA
         queryFn: () =>
           coordinates ? weatherAPI.getCurrentWeather(coordinates) : null,
         enabled: !!coordinates,

@@ -13,6 +13,7 @@ import HourlyTemperature from "@/components/HourlyTemperature";
 import { GeocodingResponse } from "@/api/Types";
 import WeatherDetails from "@/components/WeatherDetails";
 import WeatherForecast from "@/components/WeatherForecast";
+import Favoritecity from "@/components/Favoritecity";
 
 const WeatherDashbord = () => {
   const {
@@ -102,6 +103,7 @@ const WeatherDashbord = () => {
   return (
     <div className="space-y-4 gap">
       {/* fav city */}
+      <Favoritecity />
       <div className="flex items-center justify-between">
         <h1 className="font-bold text-xl tracking-tight">My Location</h1>
         <Button

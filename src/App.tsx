@@ -6,6 +6,7 @@ import WeatherDashbord from "./pages/WeatherDashbord";
 import CityName from "./pages/CityName";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "sonner";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,6 +30,7 @@ function App() {
               <Route path="/city/:cityName" element={<CityName />} />
             </Routes>
           </Layout>
+          <Toaster richColors />
         </BrowserRouter>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
