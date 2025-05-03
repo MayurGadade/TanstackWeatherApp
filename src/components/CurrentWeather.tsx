@@ -13,7 +13,7 @@ const CurrentWeather = ({ data, location }: CurrentWeatherProps) => {
     weather: [currentWeather],
     wind: { speed },
   } = data;
-  console.log("This is the current weather", currentWeather);
+  console.log("This is the current weather", location);
   const formatTemp = (temp: number) => `${Math.round(temp)}°`;
 
   return (
