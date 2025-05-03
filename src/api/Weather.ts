@@ -5,7 +5,7 @@ import { Coordinates, ForecastData, GeocodingResponse, WeatherData } from "./Typ
 class WeatherAPI{
     private creatUrl(endpoint: string, params:Record<string, string | number>){
         const searchParams = new URLSearchParams({
-            appid:API_CONFIG.API_KEY!,
+            appid:API_CONFIG.API_KEY,
             ...params
         })
 
