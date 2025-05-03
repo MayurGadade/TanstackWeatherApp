@@ -15,8 +15,15 @@ export function useWeatherQuery(coordinates: Coordinates | null) {
         queryKey: QUERY_KEY.weather(coordinates ?? { lat: 0, lon: 0 }), // USE TO REFATCHING AND CATCHING DATA
 
         // queryFn: IN THIS WE PUT OUR API CALL TO FATCH DATA
-        queryFn: () =>
-          coordinates ? weatherAPI.getCurrentWeather(coordinates) : null,
+        queryFn: async () =>{
+          if(!coordinates) return null
+          try{
+            return await weatherAPI.getCurrentWeather(coordinates);
+          } catch (error) {
+            console.error("Weather Error", error);
+            throw error;
+          }
+        },
         enabled: !!coordinates,
       },
     );
@@ -24,8 +31,15 @@ export function useWeatherQuery(coordinates: Coordinates | null) {
 export function useForecastQuery(coordinates: Coordinates | null) {
   return useQuery({
         queryKey: QUERY_KEY.forecast(coordinates ?? { lat: 0, lon: 0 }),  
-        queryFn: () =>
-          coordinates ? weatherAPI.getForecast(coordinates) : null,
+        queryFn: async () =>{
+          if(!coordinates) return null
+          try{
+            return await weatherAPI.getForecast(coordinates);
+          } catch (error) {
+            console.error("Weather Error", error);
+            throw error;
+          }
+        },
         enabled: !!coordinates,
 
   });
@@ -33,8 +47,16 @@ export function useForecastQuery(coordinates: Coordinates | null) {
 export function useReversGeocodeQuery(coordinates: Coordinates | null) {
   return useQuery({
         queryKey: QUERY_KEY.location(coordinates ?? { lat: 0, lon: 0 }),
-        queryFn: () =>
-          coordinates ? weatherAPI.reversGeocode(coordinates) : null,
+        queryFn: async () => {
+          if (!coordinates) return null;
+          try {
+            return await weatherAPI.reversGeocode(coordinates);
+          } catch (error) {
+            console.error("Reverse Geocode Error", error);
+            throw error;
+          }
+        },
+        
         enabled: !!coordinates,
   });
 }

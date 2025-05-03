@@ -23,7 +23,13 @@ const WeatherDashbord = () => {
     isloading: locationLoading,
   } = useGeolocation();
   // console.log(coordinates);
-
+  // if (!coordinates) {
+  //   return (
+  //     <div>
+  //       <Loader2 className="animate-spin" />
+  //     </div>
+  //   );
+  // }
   const weatherQuery = useWeatherQuery(coordinates);
   const forecastQuery = useForecastQuery(coordinates);
   const locationQuery = useReversGeocodeQuery(coordinates);
