@@ -1,5 +1,5 @@
 
-import { useLocalStroage } from "./UseLocalStroage"
+import { useLocalStorage } from "./UseLocalStroage"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
 interface FavoriteCity {
@@ -13,7 +13,7 @@ interface FavoriteCity {
 }
 
 export function useFavorite () {
-const [favorites, setFavorites] = useLocalStroage<FavoriteCity[]>("Favorites",[])
+const [favorites, setFavorites] = useLocalStorage<FavoriteCity[]>("Favorites",[])
 
 const queryclient = useQueryClient()
 
@@ -46,7 +46,7 @@ const favoriteQuery=useQuery({
     })
     const removeFavorite=useMutation({
         mutationFn:async (cityId:string)=>{
-            const newFavorites=favorites.filter((city)=>city.id!==cityId)
+            const newFavorites=favorites.filter((city:{id:string})=>city.id!==cityId)
             setFavorites(newFavorites);
             return newFavorites
         },
@@ -60,7 +60,7 @@ const favoriteQuery=useQuery({
         addFavorite,
         removeFavorite,
         isFavorite: (lat: number, lon: number) =>
-            favorites.some((city) => city.lat === lat && city.lon === lon),
+            favorites.some((city:{lat:number,lon:number}) => city.lat === lat && city.lon === lon),
         };
 
 }

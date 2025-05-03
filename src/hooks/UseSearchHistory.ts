@@ -1,4 +1,4 @@
-import { useLocalStroage } from "./UseLocalStroage"
+import { useLocalStorage } from "./UseLocalStroage"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
 interface SearchHistoryItem {
@@ -13,7 +13,7 @@ interface SearchHistoryItem {
 }
 
 export function useSearchHistory () {
-const [searchHistory, setSearchHistory] = useLocalStroage<SearchHistoryItem[]>("search-history",[])
+const [searchHistory, setSearchHistory] = useLocalStorage<SearchHistoryItem[]>("search-history",[])
 
 const queryclient = useQueryClient()
 
@@ -31,7 +31,7 @@ const historyQuery=useQuery({
                 searchedAt:Date.now(),
             };      
             const fillteredHistory=searchHistory.filter(
-                (item)=>!(item.name===search.name && item.lat===search.lat && item.lon===search.lon)
+                (item:{name:string,lat:number,lon:number})=>!(item.name===search.name && item.lat===search.lat && item.lon===search.lon)
             )
             const newHistory = [newSearch, ...fillteredHistory].slice(0,10)
             setSearchHistory(newHistory)

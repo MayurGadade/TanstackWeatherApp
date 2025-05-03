@@ -109,33 +109,42 @@ const CitySearch = () => {
                     Clear
                   </Button>
                 </div>
-                {history.map((location) => {
-                  return (
-                    <CommandItem
-                      key={`${location.lat}-${location.lon}`}
-                      value={`${location.lat}|${location.lon}|${location.name}|${location.country}`}
-                      onSelect={handleSelect}
-                    >
-                      <Clock className="mr-2 h-4 w-4 text-muted-foreground" />
-                      <span>{location.name},</span>
-                      {location.state && (
-                        <span className="text-muted-foreground text-sm">
-                          {location.state},
-                        </span>
-                      )}
-                      {location.country && (
-                        <span className="text-muted-foreground text-sm">
-                          {location.country}
-                        </span>
-                      )}
-                      {location.searchedAt && (
-                        <span className="text-muted-foreground text-sm">
-                          {format(location.searchedAt, "MMM d,h:mm a")}
-                        </span>
-                      )}
-                    </CommandItem>
-                  );
-                })}
+                {history.map(
+                  (location: {
+                    lat: number;
+                    lon: number;
+                    name: string;
+                    country: string;
+                    searchedAt: number;
+                    state?: string;
+                  }) => {
+                    return (
+                      <CommandItem
+                        key={`${location.lat}-${location.lon}`}
+                        value={`${location.lat}|${location.lon}|${location.name}|${location.country}`}
+                        onSelect={handleSelect}
+                      >
+                        <Clock className="mr-2 h-4 w-4 text-muted-foreground" />
+                        <span>{location.name},</span>
+                        {location.state && (
+                          <span className="text-muted-foreground text-sm">
+                            {location.state},
+                          </span>
+                        )}
+                        {location.country && (
+                          <span className="text-muted-foreground text-sm">
+                            {location.country}
+                          </span>
+                        )}
+                        {location.searchedAt && (
+                          <span className="text-muted-foreground text-sm">
+                            {format(location.searchedAt, "MMM d,h:mm a")}
+                          </span>
+                        )}
+                      </CommandItem>
+                    );
+                  }
+                )}
               </CommandGroup>
             </>
           )}
